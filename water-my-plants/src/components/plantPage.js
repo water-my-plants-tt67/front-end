@@ -1,4 +1,4 @@
-/* import react, {useEffect, useState} from 'react'
+import react, {useEffect, useState} from 'react'
 import {axiosWithAuth} from '../utils/axiosAuth'
 
 const [plantlist, setPlantList]= useState([])
@@ -21,4 +21,4 @@ return(
     <Plantlist/>
     </> 
 
-) */
+)

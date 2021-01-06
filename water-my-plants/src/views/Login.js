@@ -78,9 +78,8 @@ const Login = () => {
 
     const submit = (event) => {
         event.preventDefault()
-    }
-
-    axios.post('https://tt67-bw.herokuapp.com/users/login', data)
+        
+        axios.post('https://tt67-bw.herokuapp.com/users/login', data)
         .then(res =>{
             localStorage.setItem('token',res.data.payload)
             .push('/plants')
@@ -88,6 +87,7 @@ const Login = () => {
         .catch(error => {
             console.log(error)
         })
+    }
 
 
     return (
