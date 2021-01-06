@@ -6,6 +6,8 @@ import * as yup from 'yup'
 import Schema from './Schema'
 import Signup from './views/Signup'
 
+import plantList from "./components/plantList";
+
 const defaultLoginValues = {
     username: '',
     password: ''
@@ -67,9 +69,9 @@ const App = () => {
                 <Route path='/signup'>
                     <Signup signupValues={signupValues} change={change} errors={errors} buttonDisabled={buttonDisabled} />
                 </Route>
-                 {/*<PrivatRoute exact-path= '/plants'>
-                    insert planty component here 
-                </PrivatRoute>*/}
+                 <PrivatRoute exact-path= '/plants'>
+                    <plantList />
+                </PrivatRoute>
             </Switch>
         </div>
     )
