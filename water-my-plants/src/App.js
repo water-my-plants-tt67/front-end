@@ -5,6 +5,8 @@ import Login from './views/Login'
 import * as yup from 'yup'
 import Schema from './Schema'
 import Signup from './views/Signup'
+import PrivateRoute from './utils/PrivateRoute'
+import Plant from './User Plants Components/Plant'
 
 import plantList from "./components/plantList";
 
@@ -59,7 +61,7 @@ const App = () => {
         <div>
             <Switch>
                 <Route exact path='/'>
-                    <LandingPage />
+                    <Plant />
                 </Route>
 
                 <Route path='/login'>
@@ -69,9 +71,9 @@ const App = () => {
                 <Route path='/signup'>
                     <Signup signupValues={signupValues} change={change} errors={errors} buttonDisabled={buttonDisabled} />
                 </Route>
-                 <PrivatRoute exact-path= '/plants'>
+                 <PrivateRoute exact-path= '/plants'>
                     <plantList />
-                </PrivatRoute>
+                </PrivateRoute>
             </Switch>
         </div>
     )
