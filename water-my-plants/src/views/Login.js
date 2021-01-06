@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState}from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 const Wrapper = styled.div`
     background: linear-gradient(to right, lightgreen, lightgrey);
@@ -57,12 +58,37 @@ const SubmitButton = styled.button`
         color: darkgreen;
     }
 `
+const initial = {
+    username: '',
+    password: '',
+  }
 
 const Login = () => {
-    const history = useHistory()
-    const submit = () => {
+    const [data, setData]=useState(initial)
 
+    const handleChange = (event) =>{
+
+        setData({
+            ...data,
+            [event.target.name]:event.target.value
+        })
     }
+
+    const history = useHistory()
+
+    const submit = (event) => {
+        event.preventDefault()
+        
+        axios.post('https://tt67-bw.herokuapp.com/users/login', data)
+        .then(res =>{
+            localStorage.setItem('token',res.data.payload)
+            .push('/plants')
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
 
     return (
         <Wrapper>
@@ -71,14 +97,26 @@ const Login = () => {
                 <form>
                     <Section>
                         <SectionTitle>Username</SectionTitle>
-                        <Input />
+                        <Input 
+                        type='text' 
+                        name='username'
+                        placeholder='Username' 
+                        value={data.username}
+                        onChange={handleChange} 
+                        />
                     </Section>
                     <Section>
                         <SectionTitle>Password</SectionTitle>
-                        <Input />
+                        <Input 
+                         type='password'
+                         name='password'
+                         placeholder="Password"
+                         value={data.password}
+                         onChange={handleChange}
+                         />
                     </Section>
                     <Section>
-                        <SubmitButton>Submit</SubmitButton>
+                        <SubmitButton onClick={submit}>Submit</SubmitButton>
                     </Section>
                 </form>
             </FormWrapper>
