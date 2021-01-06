@@ -6,7 +6,8 @@ import * as yup from 'yup'
 import Schema from './Schema'
 import Signup from './views/Signup'
 
-import plantList from "./components/plantList";
+import UserPlants from "./views/UserPlants";
+import PrivateRoute from "./components/PrivateRoute";
 
 const defaultLoginValues = {
     username: '',
@@ -69,9 +70,10 @@ const App = () => {
                 <Route path='/signup'>
                     <Signup signupValues={signupValues} change={change} errors={errors} buttonDisabled={buttonDisabled} />
                 </Route>
-                 <PrivatRoute exact-path= '/plants'>
-                    <plantList />
-                </PrivatRoute>
+                <PrivateRoute 
+                    exact-path= '/plants' 
+                    component={UserPlants} 
+                />
             </Switch>
         </div>
     )
