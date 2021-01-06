@@ -64,7 +64,7 @@ const Error = styled.div`
 `
 
 const Signup = (props) => {
-    const { signupValues, change, errors, buttonDisabled, data } = props
+    const { signupValues, change, errors, buttonDisabled } = props
 
     const history = useHistory()
 
@@ -72,8 +72,7 @@ const Signup = (props) => {
         event.preventDefault()    
         axios.post('https://tt67-bw.herokuapp.com/users/register', signupValues)
         .then(res =>{
-            alert=(res)
-            .push('users/login')
+            history.push('/login')
             console.log(signupValues)
         })
         .catch(error => {

@@ -1,25 +1,44 @@
-import react, {useEffect, useState} from 'react'
-import {axiosWithAuth} from '../utils/axiosAuth'
+import React, {useEffect,} from 'react'
+import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
-export default function UserPlants() {
-  const [plantlist, setPlantList]= useState([])
+import { getUserPlants } from "./../Actions";
 
-  const getPlant = ()=>{
-      axiosWithAuth()
-      .get('user/plants')
-      .then(res =>{
-          setPlantList(res.data)
-      })
-      .catch(err => console.log(err))
-  }
+const UserPlants = ({userPlants, getUserPlants}) => {
+  const history = useHistory();
 
   useEffect(()=>{
-      getPlant()
-  },[])
+      getUserPlants();
+  },[]);
+
+  // const handleAddPlants = () => {
+  //   history.push("")
+  // }
 
   return (
     <div>
-
+      {userPlants.map((plant)=>{
+        return (
+          <div>
+            <h2>{plant.nickname}</h2>
+            <p>{plant.species}</p>
+            <p>{plant.h2oFrequency}</p>
+          </div>
+        );
+      })}
+      <div>
+        {/* <button onClick={handleAddPlants} >Add Plants</button> */}
+      </div>
     </div>
-)
+  );
 }
+
+const mapStateToProps = state => {
+  return {
+    userPlants: state.plants,
+    isFetching: state.isFetching,
+    error: state.error
+  }
+}
+
+export default connect(mapStateToProps, { getUserPlants })(UserPlants);
