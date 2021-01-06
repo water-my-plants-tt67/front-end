@@ -1,6 +1,8 @@
+
 // import React, {useState} from 'react'
 // import {axiosWithAuth} from '../utils/axiosAuth'
 // import {useParams} from 'react-router-dom'
+
 
 // const initialPlant = {
 //     nickname:'',
@@ -69,6 +71,7 @@
 //                         </span> {''}
 //                         {plant.plant}
 //                     </span>
+
 
 //                     <label>
 //                         plant name:
