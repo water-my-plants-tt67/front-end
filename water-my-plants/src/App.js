@@ -13,7 +13,7 @@ const defaultLoginValues = {
 
 const defaultSignupValues = {
     username: '',
-    phone: '',
+    telephone: '',
     password: ''
 }
 
@@ -28,6 +28,7 @@ const App = () => {
     const [savedInfo, setSavedInfo] = useState([])
     const [buttonDisabled, setButtonDisabled] = useState(true)
     const [errors, setErrors] = useState(defaultErrors)
+    
     const change = (event) => {
         const { name, value } = event.target
         validate(name, value)
@@ -66,6 +67,9 @@ const App = () => {
                 <Route path='/signup'>
                     <Signup signupValues={signupValues} change={change} errors={errors} buttonDisabled={buttonDisabled} />
                 </Route>
+                 {/*<PrivatRoute exact-path= '/plants'>
+                    insert planty component here 
+                </PrivatRoute>*/}
             </Switch>
         </div>
     )

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 const Wrapper = styled.div`
     background: linear-gradient(to right, lightgreen, lightgrey);
@@ -63,12 +64,23 @@ const Error = styled.div`
 `
 
 const Signup = (props) => {
-    const { signupValues, change, errors, buttonDisabled } = props
+    const { signupValues, change, errors, buttonDisabled, data } = props
 
     const history = useHistory()
-    const submit = () => {
 
+    const handleSubmit = (event) => {
+        event.preventDefault()    
+        axios.post('https://tt67-bw.herokuapp.com/users/register', signupValues)
+        .then(res =>{
+            alert=(res)
+            .push('users/login')
+            console.log(signupValues)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
+        
 
     return (
         <Wrapper>
@@ -82,7 +94,7 @@ const Signup = (props) => {
                     </Section>
                     <Section>
                         <SectionTitle>Phone</SectionTitle>
-                        <Input type='text' name='phone' value={signupValues.phone} onChange={change} />
+                        <Input type='text' name='telephone' value={signupValues.telephone} onChange={change} />
                         <Error>{errors.phone}</Error>
                     </Section>
                     <Section>
@@ -91,7 +103,7 @@ const Signup = (props) => {
                         <Error>{errors.password}</Error>
                     </Section>
                     <Section>
-                        <SubmitButton disabled={buttonDisabled}>Submit</SubmitButton>
+                        <SubmitButton onClick= {handleSubmit} disabled={buttonDisabled}>Submit</SubmitButton>
                     </Section>
                 </form>
             </FormWrapper>
