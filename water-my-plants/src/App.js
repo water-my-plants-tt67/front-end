@@ -64,24 +64,26 @@ const App = () => {
                     <LandingPage />
                 </Route>
 
-                <Route path='/login'>
+                <Route exact path='/login'>
                     <Login />
                 </Route>
 
-                <Route path='/signup'>
+                <Route exact path='/signup'>
                     <Signup signupValues={signupValues} change={change} errors={errors} buttonDisabled={buttonDisabled} />
                 </Route>
 
                 <PrivateRoute 
-                    exact-path= '/plants' 
+                    exact path= '/plants' 
                     component={UserPlants} 
                 />
+
                 <PrivateRoute 
-                    path= "/your-plant/:id"
+                    exact path= "/your-plant/:id"
                     component={PlantDetails} 
                 />
+                
                 <PrivateRoute 
-                    path= "/edit-plant/:id"
+                    exact path= "/edit-plant/:id"
                     component={EditPlant} 
                 />
 

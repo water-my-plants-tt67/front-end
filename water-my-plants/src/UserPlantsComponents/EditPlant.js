@@ -34,7 +34,9 @@ const EditPlant = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Plant Details</h2>
+
+      <h2>Edit a Plant!</h2>
+
       <label>
         Name:
           <input
