@@ -1,6 +1,6 @@
-import React, {useState}from "react";
+import React, {useState} from "react";
 import {connect} from 'react-redux'
-import {postPlant} from '../Actions/index'
+import {postPlant, getUserPlants} from '../Actions/index'
 
 function Plant(props) {
   const initialValues = props.plant
@@ -14,9 +14,10 @@ function Plant(props) {
   }
 
   const handleSubmit =(event) => {
-    event.preventDefault()
-    props.postPlant(formValues)
-    setFormValues(initialValues)
+    event.preventDefault();
+    props.postPlant(formValues);
+    setFormValues(initialValues);
+    props.getUserPlants();
   }
 
   return (
@@ -25,8 +26,9 @@ function Plant(props) {
       <label>
         Name:
           <input
+          name='nickname'
           type = 'text'
-          placeholder='name'
+          placeholder='nickname'
           value={props.nickname}
           onChange={handleChange}
           />
@@ -35,6 +37,7 @@ function Plant(props) {
         <label>
           Species:
           <input
+          name='species'
           type = 'text'
           placeholder='species'
           value={props.species}
@@ -44,6 +47,7 @@ function Plant(props) {
         <label>
           Watering Frequency:
           <input
+          name='h2oFrequency'
           type = 'text'
           placeholder='h2oFrequency'
           value={props.h2oFrequency}
@@ -62,4 +66,4 @@ const mapStateToProps = (state)=>{
     error: state.error
   }
 }
-export default connect(mapStateToProps, {postPlant})(Plant)
+export default connect(mapStateToProps, {postPlant, getUserPlants})(Plant)

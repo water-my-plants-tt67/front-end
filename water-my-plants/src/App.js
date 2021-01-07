@@ -5,11 +5,9 @@ import Login from './views/Login'
 import * as yup from 'yup'
 import Schema from './Schema'
 import Signup from './views/Signup'
-import PrivateRoute from './utils/PrivateRoute'
-import Plant from './User Plants Components/Plant'
-
 import UserPlants from "./views/UserPlants";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./utils/PrivateRoute";
+import NewPlant from "./UserPlantsComponents/NewPlant";
 
 const defaultLoginValues = {
     username: '',
@@ -62,7 +60,7 @@ const App = () => {
         <div>
             <Switch>
                 <Route exact path='/'>
-                    <Plant />
+                    <LandingPage />
                 </Route>
 
                 <Route path='/login'>
@@ -76,6 +74,10 @@ const App = () => {
                 <PrivateRoute 
                     exact-path= '/plants' 
                     component={UserPlants} 
+                />
+                <PrivateRoute 
+                    exact-path= '/newPlant' 
+                    component={NewPlant} 
                 />
 
             </Switch>
