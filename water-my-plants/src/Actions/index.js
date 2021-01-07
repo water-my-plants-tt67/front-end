@@ -65,13 +65,6 @@ export const getUserPlants = () => {
   });
 }
 
-// export const logOut = () => {
-//   return (dispatch => {
-//     axiosWithAuth()
-
-//   })
-// }
-
 export const getPlant = (plant) => {
   return {type:FETCHING_PLANT, payload: plant}
 }

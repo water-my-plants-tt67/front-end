@@ -3,7 +3,7 @@
 import { FETCHING_USERPLANTS_START, FETCHING_USERPLANTS_SUCCESS, FETCHING_USERPLANTS_FAIL, POST_PLANT_FAILURE, FETCHING_PLANT, PUT_PLANT_FAILURE, DELETE_PLANT_FAILURE  } from "./../Actions/index";
 
 const initialState = {
-  plant: [],
+  plant: {},
   userPlants: [],
   isFetching: false,
   error: ''
@@ -47,8 +47,6 @@ export const reducer = (state = initialState, action) => {
             userPlants: action.payload,
            error: action.payload,
        }    
-
-       } 
     case FETCHING_PLANT:
         return ({
           ...state,

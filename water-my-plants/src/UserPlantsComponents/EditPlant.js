@@ -1,15 +1,11 @@
 import React, {useState} from "react";
 import { connect } from 'react-redux';
-import { useParams } from "react-router-dom";
-import {putPlant} from '../Actions/index'
+import { useHistory } from "react-router-dom";
+import {putPlant, getUserPlants} from '../Actions/index'
 
 const EditPlant = (props) => {
-  const { userPlants } = props;
-  const { id } = useParams();
-
-  const plant = userPlants.filter( (item) => {
-    return item.id === id;
-  });
+  const { putPlant, getUserPlants } = props;
+  const history = useHistory();
 
   const initialValues = {
     nickname: '',
@@ -27,9 +23,10 @@ const EditPlant = (props) => {
 
   const handleSubmit =(event) => {
     event.preventDefault();
-    props.putPlant(formValues);
+    putPlant(formValues);
     setFormValues(initialValues);
-    props.getUserPlants();
+    getUserPlants();
+    history.push("/plants");
   }
 
   return (
@@ -75,8 +72,9 @@ const EditPlant = (props) => {
 
 const mapStateToProps = state => {
   return {
-    userPlants: state.userPlants
+    userPlants: state.userPlants,
+    plant: state.plant
   };
 };
 
-export default connect(mapStateToProps)(EditPlant);
+export default connect(mapStateToProps, { getUserPlants, putPlant })(EditPlant);

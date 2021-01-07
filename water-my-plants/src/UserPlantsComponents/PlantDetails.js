@@ -1,29 +1,20 @@
-
-import React, {useState, useEffect} from "react";
-
+import React from "react";
 import { connect } from 'react-redux';
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-const PlantDetails = ({plant}) => {
-  // const [plant, setPlant] = useState([]);
+import { deletePlant, getUserPlants, getPlant } from "./../Actions/index";
+
+const PlantDetails = ({plant, deletePlant, getUserPlants, getPlant}) => {
   const history = useHistory();
-  const { id } = useParams();
-  const initialValues = {
-    nickname: '',
-    species: '',
-    h2oFrequency: ''
-  }
-  const [formValues, setFormValues] = useState(initialValues)
 
-  const plant = userPlants.filter( (item) => {
-    return item.id === id;
-  });
 //double check
   const handleDelete = (event) => {
-    props.deletePlant(formValues);
-    setFormValues(initialValues);
-    props.getUserPlants();
-
+    event.preventDefault();
+    deletePlant(plant);
+    getPlant({});
+    getUserPlants();
+    history.push("/plants");
+  }
 
   return (
     <div>
@@ -44,7 +35,6 @@ const mapStateToProps = state => {
     userPlants: state.userPlants,
     plant: state.plant
   };
-};
+}
 
-export default connect(mapStateToProps)(PlantDetails);
-
+export default connect(mapStateToProps, {deletePlant, getUserPlants, getPlant})(PlantDetails);

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {connect} from 'react-redux'
 import {postPlant, getUserPlants} from '../Actions/index'
 
-function Plant(props) {
+function Plant({postPlant, getUserPlants}) {
   const initialValues = {
     nickname: '',
     species: '',
@@ -19,9 +19,9 @@ function Plant(props) {
 
   const handleSubmit =(event) => {
     event.preventDefault();
-    props.postPlant(formValues);
+    postPlant(formValues);
     setFormValues(initialValues);
-    props.getUserPlants();
+    getUserPlants();
   }
 
   return (
