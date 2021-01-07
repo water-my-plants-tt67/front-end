@@ -4,6 +4,8 @@ export const FETCHING_USERPLANTS_START = 'FETCHING_USERPLANTS_START';
 export const FETCHING_USERPLANTS_SUCCESS = 'FETCHING_USERPLANTS_SUCCESS';
 export const FETCHING_USERPLANTS_FAIL = 'FETCHING_USERPLANTS_FAIL';
 
+export const FETCHING_PLANT = 'FETCHING_PLANT';
+
 export const POST_PLANT_FAILURE = 'POST_PLANT_FAILURE'
 
 export const postPlant = (plant) => {
@@ -26,7 +28,7 @@ export const getUserPlants = () => {
       axiosWithAuth()
         .get(`/users/plants`)
         .then(res=> {
-          console.log(res);
+          // console.log(res);
           dispatch({type:FETCHING_USERPLANTS_SUCCESS, payload: res.data});
           })
         .catch(err => {
@@ -35,3 +37,13 @@ export const getUserPlants = () => {
   });
 }
 
+// export const logOut = () => {
+//   return (dispatch => {
+//     axiosWithAuth()
+
+//   })
+// }
+
+export const getPlant = (plant) => {
+  return {type:FETCHING_PLANT, payload: plant}
+}
