@@ -7,7 +7,8 @@ import Schema from './Schema'
 import Signup from './views/Signup'
 import UserPlants from "./views/UserPlants";
 import PrivateRoute from "./utils/PrivateRoute";
-import NewPlant from "./UserPlantsComponents/NewPlant";
+import PlantDetails from "./UserPlantsComponents/PlantDetails";
+import EditPlant from "./UserPlantsComponents/EditPlant";
 
 const defaultLoginValues = {
     username: '',
@@ -74,6 +75,14 @@ const App = () => {
                 <PrivateRoute 
                     exact-path= '/plants' 
                     component={UserPlants} 
+                />
+                <PrivateRoute 
+                    path= "/your-plant/:id"
+                    component={PlantDetails} 
+                />
+                <PrivateRoute 
+                    path= "/edit-plant/:id"
+                    component={EditPlant} 
                 />
 
             </Switch>

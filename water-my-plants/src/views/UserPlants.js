@@ -12,14 +12,6 @@ const UserPlants = ({userPlants, getUserPlants}) => {
     getUserPlants();
   },[]);
 
-  const handleEdit = () => {
-
-  }
-
-  const handleDelete = () => {
-
-  }
-
   return (
     <div>
       <div>
@@ -30,11 +22,8 @@ const UserPlants = ({userPlants, getUserPlants}) => {
         return (
           <div>
             <h2>{plant.nickname}</h2>
-            <p>Species: {plant.species}</p>
-            <p>Watering Frequency: {plant.h2oFrequency}</p>
             <div> 
-              <button onCLick={handleEdit} >Edit</button>
-              <button onCLick={handleDelete} >Delete</button>
+              <button onClick={() => {history.push(`/your-plant/${plant.id}`)}} >Plant Details</button>
             </div>
           </div>
         );
@@ -42,7 +31,9 @@ const UserPlants = ({userPlants, getUserPlants}) => {
       <div>
         <NewPlant />
       </div>
-      
+
+
+
     </div>
   );
 }

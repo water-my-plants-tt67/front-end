@@ -3,7 +3,11 @@ import {connect} from 'react-redux'
 import {postPlant, getUserPlants} from '../Actions/index'
 
 function Plant(props) {
-  const initialValues = props.plant
+  const initialValues = {
+    nickname: '',
+    species: '',
+    h2oFrequency: ''
+  }
   const [formValues, setFormValues] = useState(initialValues)
   const handleChange= (event) =>{
 
@@ -29,7 +33,7 @@ function Plant(props) {
           name='nickname'
           type = 'text'
           placeholder='nickname'
-          value={props.nickname}
+          value={formValues.nickname}
           onChange={handleChange}
           />
         </label>
@@ -40,7 +44,7 @@ function Plant(props) {
           name='species'
           type = 'text'
           placeholder='species'
-          value={props.species}
+          value={formValues.species}
           onChange={handleChange}
           />
         </label>
@@ -50,7 +54,7 @@ function Plant(props) {
           name='h2oFrequency'
           type = 'text'
           placeholder='h2oFrequency'
-          value={props.h2oFrequency}
+          value={formValues.h2oFrequency}
           onChange={handleChange}
           />
         </label>
@@ -61,8 +65,7 @@ function Plant(props) {
 
 const mapStateToProps = (state)=>{
   return{
-    plant: state.plant,
-    plants: state.plant,
+    userPlants: state.userPlants,
     error: state.error
   }
 }
