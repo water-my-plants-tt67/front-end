@@ -75,10 +75,6 @@ const App = () => {
                     exact-path= '/plants' 
                     component={UserPlants} 
                 />
-                <PrivateRoute 
-                    exact-path= '/newPlant' 
-                    component={NewPlant} 
-                />
 
             </Switch>
         </div>
