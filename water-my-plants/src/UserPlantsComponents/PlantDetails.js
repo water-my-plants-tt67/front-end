@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { connect } from 'react-redux';
 import { useParams, useHistory } from "react-router-dom";
 
@@ -6,12 +6,21 @@ const PlantDetails = (props) => {
   const history = useHistory();
   const { userPlants } = props;
   const { id } = useParams();
+  const initialValues = {
+    nickname: '',
+    species: '',
+    h2oFrequency: ''
+  }
+  const [formValues, setFormValues] = useState(initialValues)
 
   const plant = userPlants.filter( (item) => {
     return item.id === id;
   });
-
-  const handleDelete = () => {
+//double check
+  const handleDelete = (event) => {
+    props.deletePlant(formValues);
+    setFormValues(initialValues);
+    props.getUserPlants();
 
   }
 

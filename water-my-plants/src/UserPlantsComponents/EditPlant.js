@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { connect } from 'react-redux';
 import { useParams } from "react-router-dom";
+import {putPlant} from '../Actions/index'
 
 const EditPlant = (props) => {
   const { userPlants } = props;
@@ -24,13 +25,16 @@ const EditPlant = (props) => {
     })
   }
 
-  const handleSubmit = () => {
-    
+  const handleSubmit =(event) => {
+    event.preventDefault();
+    props.putPlant(formValues);
+    setFormValues(initialValues);
+    props.getUserPlants();
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add a Plant!</h2>
+      <h2>Plant Details</h2>
       <label>
         Name:
           <input
@@ -62,7 +66,7 @@ const EditPlant = (props) => {
           onChange={handleChange}
           />
         </label>
-        <button type='submit' onSubmit={handleSubmit}>Add to your profile</button>
+        <button type='submit' onSubmit={handleSubmit}>Update</button>
     </form>
   )
 }
