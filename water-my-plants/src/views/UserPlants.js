@@ -2,15 +2,19 @@ import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-import { getUserPlants } from "./../Actions";
+import { getUserPlants, getPlant } from "./../Actions";
 import NewPlant from "./../UserPlantsComponents/NewPlant";
 
-const UserPlants = ({userPlants, getUserPlants}) => {
+const UserPlants = ({userPlants, getUserPlants, getPlant}) => {
   const history = useHistory();
 
   useEffect(()=>{
     getUserPlants();
   },[]);
+
+  const handleLogOut = () =>{
+
+  }
 
   return (
     <div>
@@ -18,12 +22,16 @@ const UserPlants = ({userPlants, getUserPlants}) => {
         <h1>Your Plants :)</h1>
       </div>
       {userPlants.map((plant)=>{
-        console.log(plant);
+        // console.log(plant);
         return (
           <div>
             <h2>{plant.nickname}</h2>
             <div> 
-              <button onClick={() => {history.push(`/your-plant/${plant.id}`)}} >Plant Details</button>
+              <button onClick={(evt) => {
+                evt.preventDefault();
+                getPlant(plant);
+                history.push(`/your-plant/${plant.id}`);
+              }} >Plant Details</button>
             </div>
           </div>
         );
@@ -32,7 +40,9 @@ const UserPlants = ({userPlants, getUserPlants}) => {
         <NewPlant />
       </div>
 
-
+      <div>
+        <button onClick={handleLogOut} >Log Out</button>
+      </div>
 
     </div>
   );
@@ -46,4 +56,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getUserPlants })(UserPlants);
+export default connect(mapStateToProps, { getUserPlants, getPlant })(UserPlants);

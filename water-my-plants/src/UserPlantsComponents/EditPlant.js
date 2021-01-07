@@ -30,7 +30,7 @@ const EditPlant = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add a Plant!</h2>
+      <h2>Edit a Plant!</h2>
       <label>
         Name:
           <input
