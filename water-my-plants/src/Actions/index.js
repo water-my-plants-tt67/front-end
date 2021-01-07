@@ -7,6 +7,8 @@ export const FETCHING_USERPLANTS_FAIL = 'FETCHING_USERPLANTS_FAIL';
 export const FETCHING_PLANT = 'FETCHING_PLANT';
 
 export const POST_PLANT_FAILURE = 'POST_PLANT_FAILURE'
+export const PUT_PLANT_FAILURE = 'PUT_PLANT_FAILURE'
+export const DELETE_PLANT_FAILURE = 'DELETE_PLANT_FAILURE'
 
 export const postPlant = (plant) => {
   return (dispatch) => {
@@ -18,6 +20,32 @@ export const postPlant = (plant) => {
         .catch(err => {
             console.log(err.message)
             dispatch({ type: POST_PLANT_FAILURE, payload: err.message })
+        })
+  }
+}
+export const putPlant = (plant) => {
+  return (dispatch) => {
+      axiosWithAuth()
+        .put(`/plants/${plant.id}`, plant)
+        .then((res)=>{
+          console.log(res);
+        })
+        .catch(err => {
+            console.log(err.message)
+            dispatch({ type: PUT_PLANT_FAILURE, payload: err.message })
+        })
+  }
+}
+export const deletePlant = (plant) => {
+  return (dispatch) => {
+      axiosWithAuth()
+        .delete(`/plants/${plant.id}`, plant)
+        .then((res)=>{
+          console.log(res);
+        })
+        .catch(err => {
+            console.log(err.message)
+            dispatch({ type: DELETE_PLANT_FAILURE, payload: err.message })
         })
   }
 }

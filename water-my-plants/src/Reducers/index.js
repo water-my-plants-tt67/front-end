@@ -1,4 +1,6 @@
-import { FETCHING_USERPLANTS_START, FETCHING_USERPLANTS_SUCCESS, FETCHING_USERPLANTS_FAIL, POST_PLANT_FAILURE, FETCHING_PLANT } from "./../Actions/index";
+
+
+import { FETCHING_USERPLANTS_START, FETCHING_USERPLANTS_SUCCESS, FETCHING_USERPLANTS_FAIL, POST_PLANT_FAILURE, FETCHING_PLANT, PUT_PLANT_FAILURE, DELETE_PLANT_FAILURE  } from "./../Actions/index";
 
 const initialState = {
   plant: [],
@@ -31,12 +33,28 @@ export const reducer = (state = initialState, action) => {
        return {
            ...state,
            error: action.payload,
+
+       }    
+     case PUT_PLANT_FAILURE:
+       return {
+           ...state,
+            userPlants: action.payload,
+           error: action.payload,
+       }    
+     case DELETE_PLANT_FAILURE:
+       return {
+           ...state,
+            userPlants: action.payload,
+           error: action.payload,
+       }    
+
        } 
     case FETCHING_PLANT:
         return ({
           ...state,
           plant: action.payload
         });   
+
     default:
       return state;
   }
