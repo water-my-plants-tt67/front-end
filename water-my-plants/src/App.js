@@ -10,11 +10,6 @@ import PrivateRoute from "./utils/PrivateRoute";
 import PlantDetails from "./UserPlantsComponents/PlantDetails";
 import EditPlant from "./UserPlantsComponents/EditPlant";
 
-const defaultLoginValues = {
-    username: '',
-    password: ''
-}
-
 const defaultSignupValues = {
     username: '',
     telephone: '',
@@ -27,9 +22,7 @@ const defaultErrors = {
 }
 
 const App = () => {
-    const [loginValues, setLoginValues] = useState(defaultLoginValues)
     const [signupValues, setSignupValues] = useState(defaultSignupValues)
-    const [savedInfo, setSavedInfo] = useState([])
     const [buttonDisabled, setButtonDisabled] = useState(true)
     const [errors, setErrors] = useState(defaultErrors)
     
