@@ -2,6 +2,40 @@ import React, {useState} from "react";
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import {putPlant, getUserPlants} from '../Actions/index'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  background: linear-gradient(to right, lightgreen, lightgrey);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`
+
+const Input = styled.input`
+  border: 1px solid #cbd5e0;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .15);
+  margin-bottom: 2rem;
+`
+
+const Label = styled.label`
+  color: darkgreen;
+`
+
+const Button = styled.button`
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, .15);
+  border-radius: .375rem;
+  background-color: lightgreen;
+  color: white;
+  transition: .25s ease-in-out;
+
+  &:hover {
+      cursor: pointer;
+      background-color: white;
+      color: darkgreen;
+  }
+`
 
 const EditPlant = (props) => {
   const { putPlant, getUserPlants } = props;
@@ -31,41 +65,43 @@ const EditPlant = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <Wrapper>
+        <h2 style={{color: 'darkgreen'}}>Edit Your Plant!</h2>
 
-      <h2>Edit a Plant!</h2>
+        <Label>
+          Name:
+            <Input
+            name='nickname'
+            type = 'text'
+            placeholder='nickname'
+            value={formValues.nickname}
+            onChange={handleChange}
+            />
+          </Label>
 
-      <label>
-        Name:
-          <input
-          name='nickname'
-          type = 'text'
-          placeholder='nickname'
-          value={formValues.nickname}
-          onChange={handleChange}
-          />
-        </label>
+          <Label>
+            Species:
+            <Input
+            name='species'
+            type = 'text'
+            placeholder='species'
+            value={formValues.species}
+            onChange={handleChange}
+            />
+          </Label>
+          <Label>
+            Water:
+            <Input
+            name='h2oFrequency'
+            type = 'text'
+            placeholder='h2oFrequency'
+            value={formValues.h2oFrequency}
+            onChange={handleChange}
+            />
+          </Label>
+          <Button type='submit' onSubmit={handleSubmit}>Update</Button>
+      </Wrapper>
 
-        <label>
-          Species:
-          <input
-          name='species'
-          type = 'text'
-          placeholder='species'
-          value={formValues.species}
-          onChange={handleChange}
-          />
-        </label>
-        <label>
-          Watering Frequency:
-          <input
-          name='h2oFrequency'
-          type = 'text'
-          placeholder='h2oFrequency'
-          value={formValues.h2oFrequency}
-          onChange={handleChange}
-          />
-        </label>
-        <button type='submit' onSubmit={handleSubmit}>Update</button>
     </form>
   )
 }
