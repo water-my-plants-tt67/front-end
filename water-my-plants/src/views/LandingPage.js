@@ -77,7 +77,7 @@ const LandingPage = () => {
         <MainWrapper>
             <Title>Water My Plants</Title>
             <Wrapper>
-                <Description>Keeping your plants happy and healthy since 4/20/69.</Description>
+                <Description>Keeping your plants happy and healthy.</Description>
                 <DaCarousel />
                 <ButtonWrapper>
                     <Login onClick={handleLogin}>Login</Login>

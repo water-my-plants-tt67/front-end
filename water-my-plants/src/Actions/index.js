@@ -25,10 +25,11 @@ export const postPlant = (plant) => {
 }
 export const putPlant = (plant) => {
   return (dispatch) => {
+      console.log('anything', plant)
       axiosWithAuth()
         .put(`/plants/${plant.id}`, plant)
         .then((res)=>{
-          console.log(res);
+          console.log(res, 'test console log');
         })
         .catch(err => {
             console.log(err.message)

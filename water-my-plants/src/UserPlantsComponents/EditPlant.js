@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import {putPlant, getUserPlants} from '../Actions/index'
 import styled from 'styled-components'
 
+
 const Wrapper = styled.div`
   background: linear-gradient(to right, lightgreen, lightgrey);
   display: flex;
@@ -57,6 +58,8 @@ const EditPlant = (props) => {
 
   const handleSubmit =(event) => {
     event.preventDefault();
+    let idArr = history.location.pathname.split('/')
+    formValues.id = idArr[2]
     putPlant(formValues);
     setFormValues(initialValues);
     getUserPlants();
